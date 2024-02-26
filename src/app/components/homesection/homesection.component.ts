@@ -4,6 +4,7 @@ import { MoviesService } from '../../services/movies.service';
 import { Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { NgFor } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homesection',
@@ -17,7 +18,7 @@ import { NgFor } from '@angular/common';
 export class HomesectionComponent implements OnInit {
    dramaMovies:IMovie[];
    comedyMovies:IMovie[];
-  constructor(private _moviesService:MoviesService){
+  constructor(private _moviesService:MoviesService, private router:Router){
     this.dramaMovies=[];
     this.comedyMovies=[];
   }
@@ -27,6 +28,9 @@ export class HomesectionComponent implements OnInit {
     this.comedyMovies=this._moviesService.FilterByGenre(movies, "Comedy");
    });
    
+  }
+  NavigateTo(movieID:number){
+    this.router.navigate(["/movies",movieID])
   }
 
 }

@@ -19,4 +19,7 @@ export class MoviesService {
   FilterByGenre(movies:IMovie[], genre:string):IMovie[]{
     return movies.filter(movie=>movie.genreDTO.primaryGenre==genre);
   }
+  GetMovieByID(id:number):Observable<IMovie>{
+    return this.http.get<IMovie>(`https://localhost:7181/api/Movie/${id}`);
+  }
 }

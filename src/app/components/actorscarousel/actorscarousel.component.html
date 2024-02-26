@@ -1,19 +1,7 @@
     <div class="logos">
       <div class="logos-slide">
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
-        <div><img src="./assets/tomhardy.jpg" /></div>
+        <div class="actor-image-container" *ngFor="let actor of actors"><img [src]="actor.posterURL" /><h3>{{actor.name}}</h3></div>
+        <div class="actor-image-container" *ngFor="let actor of actors"><img [src]="actor.posterURL" /><h3>{{actor.name}}</h3></div>
+        <div class="actor-image-container" *ngFor="let actor of actors"><img [src]="actor.posterURL" /><h3>{{actor.name}}</h3></div>
       </div>
     </div>

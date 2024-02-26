@@ -12,7 +12,7 @@
       transform: translateX(-100%);
     }
   }
-  
+
   .logos {
     overflow: hidden;
     padding: 60px 0;
@@ -50,13 +50,16 @@
   .logos-slide {
     display: inline-block;
     animation: 35s slide infinite linear;
+    color: white;
   }
   
   .logos-slide img {
-    width:80%;
+    width:70%;
+    height:250px ;
     border-radius: 20px;
+    object-fit: cover;
   }
   .logos-slide div{
     display: inline-block;
-    width:20%;
+    width:10%;
   }

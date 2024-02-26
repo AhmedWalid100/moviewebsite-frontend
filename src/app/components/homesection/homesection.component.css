@@ -13,8 +13,8 @@
         padding-right:20%;
 }
 .trending h2{
-    border-left:5px solid orange;
-    border-color: orange;
+    border-left:5px solid rgb(253,108,35) ;
+    border-color: rgb(253,108,35) ;
     padding-left:5px;
     margin-bottom: 25px;
 }
@@ -23,8 +23,8 @@
     width:100%;
 }
 .popular h2{
-    border-left:5px solid orange;
-    border-color: orange;
+    border-left:5px solid rgb(253,108,35) ;
+    border-color: orargb(253,108,35) ge;
     padding-left:5px;
     margin-bottom: 25px;
 }
@@ -61,6 +61,7 @@ swiper-container {
     justify-content: start;
     align-items: start;
     height: auto;
+    cursor: pointer;
   }
 
   swiper-slide img {
@@ -69,5 +70,8 @@ swiper-container {
     height:270px;
    border-radius: 20px;
     object-fit: cover;
+  }
+  swiper-slide img:hover {
+   border:solid rgb(253,108,35) 2px;
   }
 
