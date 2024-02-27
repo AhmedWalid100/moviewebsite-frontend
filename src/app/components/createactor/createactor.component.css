@@ -1,0 +1,61 @@
+.creation-background{
+    background-image: linear-gradient(to top, rgba(44, 20, 0, 0.718), rgba(44, 20, 0, 0.718)),url("../../../assets/movieposters.jpg");
+    background-size:74%;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    padding:50px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-top:120px;
+}
+.form-container{
+    background-image: url("../../../assets/formbackground.png");
+    min-height: 80vh;
+    width: 35%;
+    background-size: 90%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 100px;
+    display:flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap:30px;
+    flex-wrap: nowrap;
+}
+.form-container div{
+    width: 100%;
+}
+input{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: none;
+    background-color: transparent;
+    outline: none;
+    border-color: black;
+    margin-left: 10px;
+    width: 100%;
+}
+input[type="file"]{
+    display:inline-block;
+    color:transparent;
+  }
+  .file{
+    display:flex;
+
+  }
+.button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+button{
+    padding:5px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+input.ng-invalid.ng-touched{
+    border-bottom: red solid 1px;
+}

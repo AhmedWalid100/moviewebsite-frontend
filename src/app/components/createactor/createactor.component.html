@@ -1,0 +1,9 @@
+<div class="creation-background">
+    <form class="form-container" [formGroup]="createActorForm" (ngSubmit)="CreateActor()">
+        <div> <label>Name:</label><input type="text" formControlName="name"/></div>
+        <div> <label>Age:</label><input type="number" formControlName="age" /></div>
+        <div> <label>Bio:</label><input type="text" formControlName="bio" /></div>
+        <div class="file"> <label>Image:</label><input class="file" type="file" formControlName="posterURL"/></div>
+        <div class="button"> <button type="submit">Create Actor</button></div>
+    </form>
+</div>
