@@ -17,7 +17,7 @@ export class ActorscarouselComponent implements OnInit {
   }
   ngOnInit(): void {
     this._actorsService.GetAllActors().subscribe((data)=>{
-      this.actors=data;
+      this.actors=data.data;
     })
   }
 

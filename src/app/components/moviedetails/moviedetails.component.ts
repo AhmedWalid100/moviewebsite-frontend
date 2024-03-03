@@ -28,8 +28,8 @@ export class MoviedetailsComponent implements OnInit {
     this._movieService.GetMovieByID(this.id).subscribe((data)=>{
       this.movie=data;
     });
-    this._actorService.GetAllActors().subscribe((data)=>{
-      this.movieActors=data;
+    this._actorService.GetAllActors().subscribe((response)=>{
+      this.movieActors=response.data;
     })
     
   }

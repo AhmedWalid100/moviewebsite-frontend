@@ -27,7 +27,7 @@ export class HeroComponent implements OnInit {
   }
   ngOnInit() {
     this._moviesService.GetAllMovies().subscribe((data)=>{
-      this.movies=this._moviesService.RandomizeMovies(data);
+      this.movies=this._moviesService.RandomizeMovies(data.data);
     })
   }
   NavigateTo(movieID:number){

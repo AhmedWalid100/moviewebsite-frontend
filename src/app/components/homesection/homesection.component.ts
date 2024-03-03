@@ -24,8 +24,8 @@ export class HomesectionComponent implements OnInit {
   }
   ngOnInit() {
    this._moviesService.GetAllMovies().subscribe((movies)=>{
-    this.dramaMovies=this._moviesService.FilterByGenre(movies,"Drama");
-    this.comedyMovies=this._moviesService.FilterByGenre(movies, "Comedy");
+    this.dramaMovies=this._moviesService.FilterByGenre(movies.data,"Drama");
+    this.comedyMovies=this._moviesService.FilterByGenre(movies.data, "Comedy");
    });
    
   }
