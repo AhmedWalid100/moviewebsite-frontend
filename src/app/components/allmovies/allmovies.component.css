@@ -1,0 +1,36 @@
+.page-container{
+    background-image: linear-gradient(to top, rgba(44, 20, 0, 0.718), rgba(44, 20, 0, 0.718)),url("../../../assets/movieposters.jpg");
+    background-size:74%;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    padding:50px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-top:130px;
+}
+.movies-container{
+    width: 70%;
+    background-color: red;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+.search{
+    background-color: blue;
+    height:40px;
+    width: 50%;
+}
+.movies{
+    height:100%;
+    background-color: green;
+    width:100%;
+}
+.paginator{
+    height:40px;
+    width: 70%;
+    background-color: purple;
+}
