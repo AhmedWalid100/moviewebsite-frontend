@@ -1,9 +1,23 @@
 <div class="page-container">
     <div class="movies-container">
-        <div class="search"></div>
-        <div class="movies"></div>
+        <div class="search">
+            <input type="text" (input)="onSearchChange()" pInputText [(ngModel)]="searchValue" />
+            <p-radioButton (click)="onRadioChange()" name="pizza" value="All" [(ngModel)]="genre" inputId="ingredient1"></p-radioButton>
+            <label for="ingredient1" class="ml-2">All</label>
+            <p-radioButton (click)="onRadioChange()" name="pizza" value="Comedy" [(ngModel)]="genre" inputId="ingredient1"></p-radioButton>
+            <label for="ingredient1" class="ml-2">Comedy</label>
+            <p-radioButton (click)="onRadioChange()" name="pizza" value="Drama" [(ngModel)]="genre" inputId="ingredient1"></p-radioButton>
+            <label for="ingredient1" class="ml-2">Drama</label>
+        </div>
+        <div class="movies">
+            <div *ngFor="let movie of movies" class="movie-card">
+                <img [src]="movie.posterURL" />
+                <h4>{{movie.title}}</h4>
+            </div>
+        </div>
         <div class="paginator">
-            <p-paginator (onPageChange)="onPageChange($any($event))" [first]="first"  [rows]="rows" [totalRecords]="120"></p-paginator>
+            <p-paginator *ngIf="refreshBoolean" (onPageChange)="onPageChange($any($event))" [first]="first" [rows]="6"
+                [totalRecords]="totalRecordsCount"></p-paginator>
         </div>
     </div>
-</div>>
+</div>

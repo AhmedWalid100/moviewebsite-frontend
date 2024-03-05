@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IMovie } from '../IMovie';
 import { Observable } from 'rxjs';
 import { IMovieData } from '../IMovieData';
@@ -13,8 +13,15 @@ export class MoviesService {
 
 
   constructor(private http:HttpClient) { }
-   GetAllMovies():Observable<IMovieData>{
-    return this.http.get<IMovieData>("https://localhost:7181/api/Movie?pageSize=10");
+
+   GetAllMovies(searchParams?:HttpParams):Observable<IMovieData>{
+    if (searchParams){
+      return this.http.get<IMovieData>("https://localhost:7181/api/Movie",{params:searchParams});
+    }
+    else{
+      return this.http.get<IMovieData>("https://localhost:7181/api/Movie?pageSize=10");
+    }
+
   }
   RandomizeMovies(movies:IMovie[]):IMovie[]{
     return movies.sort(() => 0.5 - Math.random());
