@@ -10,3 +10,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
+.p-button{
+    padding:5px;
+    margin:5px;
+
+}
+.p-dialog-header{
+    padding:10px;
+}
+.p-dialog-content{
+    padding:10px;
+}
+.p-dialog-footer{
+    padding:10px;
+
+}

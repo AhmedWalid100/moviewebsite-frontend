@@ -1,0 +1,17 @@
+<div class="page-container">
+    <div class="movies-container">
+        <div class="search">
+            <input type="text" (input)="onSearchChange()" pInputText [(ngModel)]="searchValue" />
+        </div>
+        <div class="movies">
+            <div *ngFor="let actor of actors" class="movie-card">
+                <img [src]="actor.posterURL" />
+                <h4>{{actor.name}}</h4>
+            </div>
+        </div>
+        <div class="paginator">
+            <p-paginator *ngIf="refreshBoolean" (onPageChange)="onPageChange($any($event))" [first]="first" [rows]="6"
+                [totalRecords]="totalRecordsCount"></p-paginator>
+        </div>
+    </div>
+</div>

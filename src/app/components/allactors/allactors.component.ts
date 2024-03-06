@@ -1,13 +1,12 @@
-import { Component, viewChild } from '@angular/core';
+import { Component, Input, importProvidersFrom, input, viewChild } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
-import { MoviesService } from '../../services/movies.service';
+import { ActorsServiceService } from '../../services/actors-service.service';
 import { HttpParams } from '@angular/common/http';
-import { IMovie } from '../../IMovie';
 import { NgFor } from '@angular/common';
-import { InputTextModule } from 'primeng/inputtext';
+import { InputText, InputTextModule } from 'primeng/inputtext';
 import { NgIf } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { Router } from '@angular/router';
+import { IActor } from '../../IActor';
 
 interface PageEvent {
   first: number;
@@ -15,16 +14,15 @@ interface PageEvent {
   page: number;
   pageCount: number;
 }
-@Component({
-  selector: 'app-allmovies',
-  standalone: true,
-  imports: [PaginatorModule, NgFor, InputTextModule, NgIf,RadioButtonModule],
-  templateUrl: './allmovies.component.html',
-  styleUrl: './allmovies.component.css'
-})
 
-export class AllmoviesComponent {
-  genre:string="All";
+@Component({
+  selector: 'app-allactors',
+  standalone: true,
+  imports: [PaginatorModule, NgFor, InputTextModule, NgIf, RadioButtonModule],
+  templateUrl: './allactors.component.html',
+  styleUrl: './allactors.component.css'
+})
+export class AllactorsComponent {
   ignorePageReset:boolean=false;
   refreshBoolean:boolean=true;
   first: number = 0;
@@ -33,33 +31,29 @@ export class AllmoviesComponent {
   _pageSize:number;
   _page:number;
   totalRecordsCount!:number;
-  movies!:IMovie[];
+  actors!:IActor[];
   searchParams!:HttpParams;
   searchValue!: string;
-  constructor(private _movieService:MoviesService, private _router:Router){
+  constructor(private _actorService:ActorsServiceService){
     this._pageSize=6;
     this._page=0;
-    this.fetchMovies();
+    this.fetchActors();
   }
   onPageChange(event: PageEvent) {
    console.log(event);
    this._page=event.page;
    this.ignorePageReset=true;
-   this.fetchMovies();
+   this.fetchActors();
 }
 onSearchChange(){
   this.ignorePageReset=false;
-  this.fetchMovies();
+  this.fetchActors();
 }
-onRadioChange(){
-  this.ignorePageReset=false;
-  this.fetchMovies();
-}
-fetchMovies(){
+fetchActors(){
   
   this.searchParams=new HttpParams();
   if(this.searchValue){
-    this.searchParams=this.searchParams.append('searchTitle',`${this.searchValue}`);
+    this.searchParams=this.searchParams.append('searchName',`${this.searchValue}`);
     if(!this.ignorePageReset){
       this._page=0;
       this.refreshBoolean=false;
@@ -69,26 +63,13 @@ fetchMovies(){
     }
 
   }
-  if(this.genre!="All"){
-    this.searchParams=this.searchParams.append('searchGenre',`${this.genre}`);
-    if(!this.ignorePageReset){
-      this._page=0;
-      this.refreshBoolean=false;
-      setTimeout(() => {
-        this.refreshBoolean = true; 
-      }, 2);
-    }
-  }
+
   this.searchParams=this.searchParams.append('page',`${this._page+1}`);
   this.searchParams=this.searchParams.append('pageSize',`${this._pageSize}`);
-  this._movieService.GetAllMovies(this.searchParams).subscribe((data)=>{
+  this._actorService.GetAllActors(this.searchParams).subscribe((data)=>{
     this.totalRecordsCount=data.count;
-    this.movies=data.data;
+    this.actors=data.data;
     console.log(data);
   });
 }
-NavigateTo(movieID:number){
-  this._router.navigate(["/movies",movieID])
-}
-
 }

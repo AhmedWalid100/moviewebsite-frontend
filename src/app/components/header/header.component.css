@@ -39,6 +39,7 @@ nav ul li a {
   font-size: 18px;
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 
 nav ul li a:hover {

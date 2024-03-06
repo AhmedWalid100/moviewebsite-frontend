@@ -18,7 +18,34 @@ display: flex;
 flex-wrap: nowrap;
 color:white;
 gap:30px;
-
+position:relative;
+}
+.buttons{
+    position: absolute;
+    top:0;
+    right:0;
+    display:inline-block; 
+}
+.edit-button{
+    display:inline-block;
+    height:25px;
+    width:50px;
+    background-color: rgb(198,66,2);
+    border-radius: 10px;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+.delete-button{
+    display:inline-block;
+    height:25px;
+    width:50px;
+    margin-left:10px;
+    background-color:red;
+    border-radius: 10px;
+    border:none;
+    color:white;
+    cursor:pointer;
 }
 .movieimage{
     height: 400px;

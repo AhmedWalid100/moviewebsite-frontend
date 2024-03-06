@@ -35,4 +35,10 @@ export class MoviesService {
   PostMovie(movie:IMovieCommand):Observable<ICreateResponse<IMovie>>{
     return this.http.post<ICreateResponse<IMovie>>("https://localhost:7181/api/Movie",movie);
   }
+  UpdateMovie(id:number, movie:IMovieCommand):Observable<ICreateResponse<number>>{
+    return this.http.put<ICreateResponse<number>>(`https://localhost:7181/api/Movie/${id}`, movie);
+  }
+  DeleteMovie(id:number):Observable<string>{
+    return this.http.delete<string>(`https://localhost:7181/api/Movie/${id}`);
+  }
 }

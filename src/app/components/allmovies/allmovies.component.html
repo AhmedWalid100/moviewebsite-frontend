@@ -2,15 +2,15 @@
     <div class="movies-container">
         <div class="search">
             <input type="text" (input)="onSearchChange()" pInputText [(ngModel)]="searchValue" />
-            <p-radioButton (click)="onRadioChange()" name="pizza" value="All" [(ngModel)]="genre" inputId="ingredient1"></p-radioButton>
-            <label for="ingredient1" class="ml-2">All</label>
-            <p-radioButton (click)="onRadioChange()" name="pizza" value="Comedy" [(ngModel)]="genre" inputId="ingredient1"></p-radioButton>
-            <label for="ingredient1" class="ml-2">Comedy</label>
-            <p-radioButton (click)="onRadioChange()" name="pizza" value="Drama" [(ngModel)]="genre" inputId="ingredient1"></p-radioButton>
-            <label for="ingredient1" class="ml-2">Drama</label>
+            <p-radioButton (click)="onRadioChange()" name="genre" value="All" [(ngModel)]="genre" inputId="All"></p-radioButton>
+            <label for="All" class="ml-2">All</label>
+            <p-radioButton (click)="onRadioChange()" name="genre" value="Comedy" [(ngModel)]="genre" inputId="Comedy"></p-radioButton>
+            <label for="Comedy" class="ml-2">Comedy</label>
+            <p-radioButton (click)="onRadioChange()" name="genre" value="Drama" [(ngModel)]="genre" inputId="Drama"></p-radioButton>
+            <label for="Drama" class="ml-2">Drama</label>
         </div>
         <div class="movies">
-            <div *ngFor="let movie of movies" class="movie-card">
+            <div *ngFor="let movie of movies" (click)="NavigateTo(movie.id) "class="movie-card">
                 <img [src]="movie.posterURL" />
                 <h4>{{movie.title}}</h4>
             </div>
