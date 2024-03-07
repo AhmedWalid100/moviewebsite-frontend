@@ -36,6 +36,17 @@ position:relative;
     color:white;
     cursor:pointer;
 }
+.add-button{
+    display:inline-block;
+    height:25px;
+    width:50px;
+    background-color: rgb(198,66,2);
+    border-radius: 10px;
+    border:none;
+    color:white;
+    cursor:pointer;
+    margin-left: 10px;
+}
 .delete-button{
     display:inline-block;
     height:25px;
@@ -93,3 +104,20 @@ swiper-slide {
    border-radius: 20px;
     object-fit: cover;
   }
+
+.title-multiselect-container{
+    display:flex;
+    justify-content: space-between;
+}
+.relative-slide{
+    position: relative;
+}
+.remove-icon{
+    position: absolute;
+    top:5px;
+    right:10px;
+}
+.remove-icon:hover{
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 10px;
+}

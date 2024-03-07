@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IMovieData } from '../IMovieData';
 import { IMovieCommand } from '../IMovieCommand';
 import { ICreateResponse } from '../ICreateResponse';
+import { IActor } from '../IActor';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,14 @@ export class MoviesService {
   }
   DeleteMovie(id:number):Observable<string>{
     return this.http.delete<string>(`https://localhost:7181/api/Movie/${id}`);
+  }
+  AddActorToMovie(movieID:number, actorID:number):Observable<any>{
+    return this.http.put<any>(`https://localhost:7181/api/Movie/AddActorToMovie?movieID=${movieID}&actorID=${actorID}`,null);
+  }
+  GetMovieActorsByMovieID(movieID:number):Observable<IActor[]>{
+    return this.http.get<IActor[]>(`https://localhost:7181/api/Movie/GetMovieActors/${movieID}`);
+  }
+  DeleteMovieActor(movieID:number, actorID:number):Observable<any>{
+    return this.http.delete<any>(`https://localhost:7181/api/Movie/DeleteMovieActor?movieID=${movieID}&actorID=${actorID}`);
   }
 }
