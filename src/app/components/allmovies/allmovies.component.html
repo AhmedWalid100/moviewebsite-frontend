@@ -8,6 +8,7 @@
             <label for="Comedy" class="ml-2">Comedy</label>
             <p-radioButton (click)="onRadioChange()" name="genre" value="Drama" [(ngModel)]="genre" inputId="Drama"></p-radioButton>
             <label for="Drama" class="ml-2">Drama</label>
+            <button (click)="NavigateToLink('create/movie')" class="create-button">Create Movie</button>
         </div>
         <div class="movies">
             <div *ngFor="let movie of movies" (click)="NavigateTo(movie.id) "class="movie-card">

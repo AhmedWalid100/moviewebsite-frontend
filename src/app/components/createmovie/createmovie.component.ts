@@ -79,4 +79,7 @@ export class CreatemovieComponent implements OnInit {
       alert("Please complete the form");
     }
   }
+  CancelForm(){
+    this._router.navigate(['/movies']);
+  }
 }

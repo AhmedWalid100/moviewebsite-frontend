@@ -8,6 +8,7 @@ import { IActorCommand } from '../../IActorCommand';
 import { ActorsServiceService } from '../../services/actors-service.service';
 import { ICreateResponse } from '../../ICreateResponse';
 import { IActor } from '../../IActor';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-createactor',
   standalone: true,
@@ -22,7 +23,7 @@ export class CreateactorComponent implements OnInit {
   imagePath!:string;
   actorCommand!:IActorCommand;
   createResponse!:ICreateResponse<IActor>;
-  constructor(private _imageService:ImagesService, private _actorService:ActorsServiceService){
+  constructor(private _imageService:ImagesService, private _actorService:ActorsServiceService, private _router:Router){
     
   }
   ngOnInit(): void {
@@ -51,7 +52,7 @@ export class CreateactorComponent implements OnInit {
       }
       this._actorService.CreateActor(this.actorCommand).subscribe((data)=>{
         this.createResponse=data;
-        console.log(this.createResponse);
+        this._router.navigate(['/actors',this.createResponse.data.id]);
       });
     })
   }
@@ -63,6 +64,9 @@ export class CreateactorComponent implements OnInit {
   OnImageChange(event:any){ 
     this.selectedFile=<File>event.target.files[0];
     console.log(this.selectedFile);
+  }
+  CancelForm(){
+    this._router.navigate(["actors"]);
   }
   
 }

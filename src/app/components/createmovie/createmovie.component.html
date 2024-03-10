@@ -8,6 +8,6 @@
         <div> <label>Language:</label><input type="text" formControlName="language" /></div>
         <div> <label>Description:</label><textarea formControlName="description"></textarea></div>
         <div class="file"><label>Image:</label><input class="file" type="file" (change)="OnImageChange($event)"/></div>
-        <div class="button"> <button type="submit">Create Movie</button></div>
+        <div class="button"> <button type="submit">Create Movie</button><button (click)="CancelForm()" type="button">Cancel</button></div>
     </form>
 </div>

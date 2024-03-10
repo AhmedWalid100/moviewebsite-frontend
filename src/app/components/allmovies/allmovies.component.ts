@@ -88,7 +88,10 @@ fetchMovies(){
   });
 }
 NavigateTo(movieID:number){
-  this._router.navigate(["/movies",movieID])
+  this._router.navigate(["/movies",movieID]);
+}
+NavigateToLink(url:string){
+  this._router.navigate([url]);
 }
 
 }

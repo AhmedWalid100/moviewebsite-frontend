@@ -87,4 +87,7 @@ export class EditmovieComponent implements OnInit{
       }
     })
   }
+  CancelForm(){
+    this._router.navigate(['/movies',this.id]);
+  }
 }

@@ -66,5 +66,22 @@
     height: 30px;
     color: white;
 }
+.movie-card img{
+    cursor:pointer;
+}
+.create-button{
+    height:25px;
+    background-color: rgb(198,66,2);
+    border-radius: 10px;
+    border:none;
+    color:white;
+    cursor:pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 20px;
+}
+.movie-card img:hover{
+    border:solid rgb(253,108,35) 2px;
+}
 
 

@@ -7,6 +7,7 @@ import { InputText, InputTextModule } from 'primeng/inputtext';
 import { NgIf } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { IActor } from '../../IActor';
+import { Router } from '@angular/router';
 
 interface PageEvent {
   first: number;
@@ -34,7 +35,7 @@ export class AllactorsComponent {
   actors!:IActor[];
   searchParams!:HttpParams;
   searchValue!: string;
-  constructor(private _actorService:ActorsServiceService){
+  constructor(private _actorService:ActorsServiceService, private _router:Router){
     this._pageSize=6;
     this._page=0;
     this.fetchActors();
@@ -71,5 +72,11 @@ fetchActors(){
     this.actors=data.data;
     console.log(data);
   });
+}
+NavigateTo(id:number){
+  this._router.navigate(["actors", id]);
+}
+NavigateToLink(url:string){
+  this._router.navigate([url]);
 }
 }

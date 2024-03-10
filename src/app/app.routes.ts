@@ -10,6 +10,8 @@ import { CreatemovieComponent } from './components/createmovie/createmovie.compo
 import { AllmoviesComponent } from './components/allmovies/allmovies.component';
 import { AllactorsComponent } from './components/allactors/allactors.component';
 import { EditmovieComponent } from './components/editmovie/editmovie.component';
+import { ActordetailsComponent } from './components/actordetails/actordetails.component';
+import { EditactorComponent } from './components/editactor/editactor.component';
 
 
 
@@ -19,4 +21,6 @@ export const routes: Routes = [{path:"",component:HomepageComponent},
 {path:"create/movie",component:CreatemovieComponent},
 {path:"movies",component:AllmoviesComponent},
 {path:"actors",component:AllactorsComponent},
-{path:"edit/movie/:id",component:EditmovieComponent}];
+{path:"edit/movie/:id",component:EditmovieComponent},
+{path:"actors/:id",component:ActordetailsComponent},
+{path:"edit/actor/:id",component:EditactorComponent}];
