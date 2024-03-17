@@ -1,0 +1,7 @@
+<form (submit)="Register()" [formGroup]="registerForm">
+    <label>User Name:</label><input type="text" formControlName="Username"/>
+    <label>Email:</label><input type="email" formControlName="Email"/>
+    <label>Password:</label><input type="password" formControlName="Password"/>
+    <label>Confirm Password:</label><input type="password" formControlName="ConfirmPassword">
+    <button type="submit">Register</button>
+</form>

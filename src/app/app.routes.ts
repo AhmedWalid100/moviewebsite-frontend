@@ -12,6 +12,8 @@ import { AllactorsComponent } from './components/allactors/allactors.component';
 import { EditmovieComponent } from './components/editmovie/editmovie.component';
 import { ActordetailsComponent } from './components/actordetails/actordetails.component';
 import { EditactorComponent } from './components/editactor/editactor.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -23,4 +25,6 @@ export const routes: Routes = [{path:"",component:HomepageComponent},
 {path:"actors",component:AllactorsComponent},
 {path:"edit/movie/:id",component:EditmovieComponent},
 {path:"actors/:id",component:ActordetailsComponent},
-{path:"edit/actor/:id",component:EditactorComponent}];
+{path:"edit/actor/:id",component:EditactorComponent},
+{path:"register",component:RegisterComponent},
+{path:"login",component:LoginComponent}];
