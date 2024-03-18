@@ -11,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-
+decodedToken:any;
   constructor(private http:HttpClient) {
     
    }
@@ -21,20 +21,54 @@ export class AuthService {
   }
   Login(loginForm:ILogin):Observable<IRegisterLoginResponse>{
    return this.http.post<IRegisterLoginResponse>("https://localhost:7181/api/Auth/auth/login", loginForm);
+
   }
   LogOut(){
-    return this.http.get<any>("https://localhost:7181/api/Auth/auth/logout");
+    localStorage.removeItem("jwtToken");
+    window.location.reload();
   }
   Fetch():Observable<any>{
     return this.http.get<any>("https://localhost:7181/api/Auth/auth/user");
   }
-  isTokenExpired(){
-    var token=localStorage.getItem("jwtToken");
-    if(!token){
+
+  isUserLoggedIn():boolean{
+    if(localStorage.getItem("jwtToken")){
       return true;
     }
-    var decodedToken=jwtDecode(token);
-     
+    else{
+      return false;
+    }
+  }
+  TokenDecoding():any{
+    var token=localStorage.getItem("jwtToken");
+    this.decodedToken=jwtDecode(token!);
+    return(this.decodedToken);
   }
 
+  isTokenExpired(){
+    this.decodedToken=this.TokenDecoding();
+    console.log(this.decodedToken.email);
+    var expirationDate=this.decodedToken.exp*1000;
+    var now=new Date().getTime();
+    console.log(expirationDate!<now);
+     return expirationDate! < now;
+  } 
+
+  isUserAdmin():boolean{
+    this.decodedToken=this.TokenDecoding();
+    var isAdmin=false;
+    if (!this.decodedToken.role)
+    return false;
+    this.decodedToken.role.forEach((role: string) => {
+      if(role.toLowerCase()=="admin")
+        isAdmin=true;
+      
+    });
+    if(isAdmin){
+      return true;
+    }
+    else{
+    return false;
+    }
+  }
 }

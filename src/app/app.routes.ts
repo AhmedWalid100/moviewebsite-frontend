@@ -14,17 +14,18 @@ import { ActordetailsComponent } from './components/actordetails/actordetails.co
 import { EditactorComponent } from './components/editactor/editactor.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { authGuard } from './auth.guard';
 
 
 
 export const routes: Routes = [{path:"",component:HomepageComponent},
 {path:"movies/:id",component:MoviedetailsComponent},
-{path:"create/actor",component:CreateactorComponent},
-{path:"create/movie",component:CreatemovieComponent},
+{path:"create/actor",component:CreateactorComponent,canActivate:[authGuard]},
+{path:"create/movie",component:CreatemovieComponent, canActivate:[authGuard]},
 {path:"movies",component:AllmoviesComponent},
 {path:"actors",component:AllactorsComponent},
-{path:"edit/movie/:id",component:EditmovieComponent},
+{path:"edit/movie/:id",component:EditmovieComponent,canActivate:[authGuard]},
 {path:"actors/:id",component:ActordetailsComponent},
-{path:"edit/actor/:id",component:EditactorComponent},
+{path:"edit/actor/:id",component:EditactorComponent,canActivate:[authGuard]},
 {path:"register",component:RegisterComponent},
 {path:"login",component:LoginComponent}];

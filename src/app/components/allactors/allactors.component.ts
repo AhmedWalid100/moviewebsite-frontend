@@ -1,4 +1,4 @@
-import { Component, Input, importProvidersFrom, input, viewChild } from '@angular/core';
+import { Component, Input, OnInit, importProvidersFrom, input, viewChild } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { ActorsServiceService } from '../../services/actors-service.service';
 import { HttpParams } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { NgIf } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { IActor } from '../../IActor';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 interface PageEvent {
   first: number;
@@ -23,7 +24,7 @@ interface PageEvent {
   templateUrl: './allactors.component.html',
   styleUrl: './allactors.component.css'
 })
-export class AllactorsComponent {
+export class AllactorsComponent implements OnInit {
   ignorePageReset:boolean=false;
   refreshBoolean:boolean=true;
   first: number = 0;
@@ -35,10 +36,17 @@ export class AllactorsComponent {
   actors!:IActor[];
   searchParams!:HttpParams;
   searchValue!: string;
-  constructor(private _actorService:ActorsServiceService, private _router:Router){
+  isAdmin!:boolean;
+  constructor(private _actorService:ActorsServiceService, private _router:Router, private _authService:AuthService){
     this._pageSize=6;
     this._page=0;
     this.fetchActors();
+  }
+  ngOnInit(): void {
+    this.isAdmin=false;
+    if(this._authService.isUserLoggedIn() && this._authService.isUserAdmin()){
+      this.isAdmin=true;
+    }
   }
   onPageChange(event: PageEvent) {
    console.log(event);

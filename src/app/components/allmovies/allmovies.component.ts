@@ -1,4 +1,4 @@
-import { Component, viewChild } from '@angular/core';
+import { Component, OnInit, viewChild } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { MoviesService } from '../../services/movies.service';
 import { HttpParams } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { NgIf } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 interface PageEvent {
   first: number;
@@ -23,7 +24,7 @@ interface PageEvent {
   styleUrl: './allmovies.component.css'
 })
 
-export class AllmoviesComponent {
+export class AllmoviesComponent implements OnInit {
   genre:string="All";
   ignorePageReset:boolean=false;
   refreshBoolean:boolean=true;
@@ -36,10 +37,17 @@ export class AllmoviesComponent {
   movies!:IMovie[];
   searchParams!:HttpParams;
   searchValue!: string;
-  constructor(private _movieService:MoviesService, private _router:Router){
+  isAdmin!:boolean;
+  constructor(private _movieService:MoviesService, private _router:Router, private _authService:AuthService){
     this._pageSize=6;
     this._page=0;
     this.fetchMovies();
+  }
+  ngOnInit(): void {
+    this.isAdmin=false;
+    if(this._authService.isUserLoggedIn() && this._authService.isUserAdmin()){
+      this.isAdmin=true;
+    }
   }
   onPageChange(event: PageEvent) {
    console.log(event);

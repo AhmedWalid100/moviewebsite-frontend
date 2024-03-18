@@ -3,6 +3,8 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormControlName, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ILogin } from '../../ILogin';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +14,15 @@ import { ILogin } from '../../ILogin';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  constructor(private _authService:AuthService){
+  constructor(private _authService:AuthService, private location:Location, private _router:Router){
 
   }
   loginForm!:FormGroup;
   loginFormSent!:ILogin;
   ngOnInit(): void {
+    if(this._authService.isUserLoggedIn()){
+      this._router.navigate(['']);
+    }
     this._authService.Fetch().subscribe((data)=>{
       console.log(data);
     })
@@ -35,12 +40,12 @@ export class LoginComponent implements OnInit {
     this._authService.Login(this.loginFormSent).subscribe((data)=>{
       console.log(data);
       localStorage.setItem('jwtToken',data.token);
+         this.location.back();
+         window.location.reload();
     })
   }
   LogOut(){
-    this._authService.LogOut().subscribe(()=>{
-      console.log("logged out");
-    });
+    this._authService.LogOut();
   }
 
 }

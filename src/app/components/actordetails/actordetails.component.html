@@ -7,7 +7,7 @@
             <h2>{{actor.name}}</h2>
             <p>{{actor.bio}}</p>
         </div>
-        <div class="buttons"><button (click)="NavigateTo(actor.id)" class="edit-button">Edit</button><button
+        <div *ngIf="isAdmin" class="buttons"><button (click)="NavigateTo(actor.id)" class="edit-button">Edit</button><button
                 (click)="confirm2($event)" class="delete-button">Delete</button>
         </div>
     </div>

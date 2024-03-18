@@ -10,7 +10,7 @@
             </div>
             <p>{{movie.description}}</p>
         </div>
-        <div class="buttons"><button (click)="NavigateTo(movie.id)" class="edit-button">Edit</button><button
+        <div *ngIf="isAdmin" class="buttons"><button (click)="NavigateTo(movie.id)" class="edit-button">Edit</button><button
                 (click)="confirm2($event)" class="delete-button">Delete</button>
         </div>
     </div>
@@ -18,7 +18,7 @@
         <div *ngIf="refreshBoolean==true" class="actors-container">
             <div class="title-multiselect-container">
                 <h2>Series Actors</h2>
-                <form  (ngSubmit)="onMultiSelectSubmit()" [formGroup]="movieActorsForm">
+                <form *ngIf="isAdmin" (ngSubmit)="onMultiSelectSubmit()" [formGroup]="movieActorsForm">
                     <p-multiSelect  [displaySelectedLabel]="false" [options]="movieActorsOptions" formControlName="selectedCities" optionLabel="name"
                         placeholder="Add Actors"></p-multiSelect>
                         <button type="submit" class="add-button">Add</button>
@@ -29,7 +29,7 @@
                     <swiper-slide class="relative-slide" *ngFor="let actor of movieActors"><img class="swiperslideimage"
                             [src]="actor.posterURL" />
                         <h5>{{actor.name}}</h5>
-                        <i (click)="DeleteMovieActor(actor.id)" class="pi pi-times remove-icon" style="color: red"></i>
+                        <i *ngIf="isAdmin" (click)="DeleteMovieActor(actor.id)" class="pi pi-times remove-icon" style="color: red"></i>
                     </swiper-slide>
                 </swiper-container>
                 <div class="gradient"></div>

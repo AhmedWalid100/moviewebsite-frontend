@@ -13,6 +13,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { FormControl, FormControlName, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { NgIf } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-moviedetails',
@@ -32,14 +33,19 @@ export class MoviedetailsComponent implements OnInit {
   movieActorsOptionsBeforeFilteration:IActor[];
   movieActorsForm!: FormGroup;
   searchParams!:HttpParams;
+  isAdmin!:boolean;
   constructor(private route:ActivatedRoute, private _movieService:MoviesService, private _actorService:ActorsServiceService, 
-    private _router:Router, private confirmationService: ConfirmationService, private messageService: MessageService){
+    private _router:Router, private confirmationService: ConfirmationService,
+     private messageService: MessageService, private _authService:AuthService){
     this.id=null;
     this.movieActorsOptions=[];
     this.movieActorsOptionsBeforeFilteration=[];
   }
   ngOnInit(): void {
-
+    this.isAdmin=false;
+    if(this._authService.isUserLoggedIn() && this._authService.isUserAdmin()){
+      this.isAdmin=true;
+    }
     this.searchParams=new HttpParams();
     this.searchParams=this.searchParams.append('page','1');
     this.searchParams=this.searchParams.append('pageSize','1000');

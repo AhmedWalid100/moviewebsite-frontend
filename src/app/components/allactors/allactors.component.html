@@ -2,7 +2,7 @@
     <div class="movies-container">
         <div class="search">
             <input type="text" (input)="onSearchChange()" pInputText [(ngModel)]="searchValue" />
-            <button (click)="NavigateToLink('/create/actor')" class="create-button">Create Actor</button>
+            <button *ngIf="isAdmin" (click)="NavigateToLink('/create/actor')" class="create-button">Create Actor</button>
         </div>
         <div class="movies">
             <div (click)="NavigateTo(actor.id)" *ngFor="let actor of actors" class="movie-card">
