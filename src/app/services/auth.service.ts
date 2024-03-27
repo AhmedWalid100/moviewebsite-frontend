@@ -25,7 +25,9 @@ decodedToken:any;
   }
   LogOut(){
     localStorage.removeItem("jwtToken");
+    this.http.get("https://localhost:7181/api/Auth/auth/logout").subscribe();
     window.location.reload();
+
   }
   Fetch():Observable<any>{
     return this.http.get<any>("https://localhost:7181/api/Auth/auth/user");
@@ -47,7 +49,9 @@ decodedToken:any;
 
   isTokenExpired(){
     this.decodedToken=this.TokenDecoding();
-    console.log(this.decodedToken.email);
+    if(this.decodedToken==null){
+      return false;
+    }
     var expirationDate=this.decodedToken.exp*1000;
     var now=new Date().getTime();
     console.log(expirationDate!<now);

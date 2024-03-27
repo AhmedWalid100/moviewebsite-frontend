@@ -1,7 +1,9 @@
-<form (submit)="Login()" [formGroup]="loginForm">
-    <label>User Name:</label><input type="email" formControlName="Email"/>
-    <label>Password:</label><input type="password" formControlName="Password"/>
-    <button type="submit">Login</button>
-</form>
-
-<button (click)="LogOut()" type="button">logout</button>
+<div class="form-container">
+    <form (submit)="Login()" [formGroup]="loginForm">
+        <h2>LOGIN</h2>
+        <div class="input-container"><label>Email:</label><input type="email" formControlName="Email" /></div>
+        <div class="input-container"><label>Password:</label><input type="password" formControlName="Password" /></div>
+        <button type="submit">Login</button>
+        <p>No account? <span (click)="NavigateToRegister()" >Register</span></p>
+    </form>
+</div>

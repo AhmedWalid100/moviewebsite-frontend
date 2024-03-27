@@ -1,6 +1,56 @@
 form{
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    gap:40px;
+    padding: 70px 80px;
+    background: transparent;
+    backdrop-filter:blur(2px);
+    color: white;
+    border: 1px white solid;
+    border-radius: 20px;
+    font-size:large;
+    align-items: center;
+}
+.form-container{
+    background-image: linear-gradient(to top, rgba(44, 20, 0, 0.718), rgba(44, 20, 0, 0.718)),url("../../../assets/movieposters.jpg");
     display:flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    width: 100%;
+    padding-top: 50px;
+}
+.input-container{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+    color:white;
+}
+button{
+    width: 100%;
+    background-color: white;
+    border: none;
+    color:black;
+    border-radius: 5px;
+    font-size: medium;
+    padding: 5px 0px;
+    font-weight: bold;
+}
+button:hover{
+    border:2px solid orange;
+    padding: 3px 0px;
+}
+p{
+    font-size: medium;
+}
+span{
+    font-weight: bold;
+    cursor: pointer;
 }

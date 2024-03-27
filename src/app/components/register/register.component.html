@@ -1,7 +1,9 @@
-<form (submit)="Register()" [formGroup]="registerForm">
-    <label>User Name:</label><input type="text" formControlName="Username"/>
-    <label>Email:</label><input type="email" formControlName="Email"/>
-    <label>Password:</label><input type="password" formControlName="Password"/>
-    <label>Confirm Password:</label><input type="password" formControlName="ConfirmPassword">
+<div class="form-container"><form (submit)="Register()" [formGroup]="registerForm">
+    <h2>REGISTER</h2>
+   <div class="input-container"><label>User Name:</label><input type="text" formControlName="Username"/></div> 
+    <div class="input-container"><label>Email:</label><input type="email" formControlName="Email"/></div>
+    <div class="input-container"><label>Password:</label><input type="password" formControlName="Password"/></div>
+    <div class="input-container"><label>Confirm Password:</label><input type="password" formControlName="ConfirmPassword"></div>
     <button type="submit">Register</button>
 </form>
+</div>

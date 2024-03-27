@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   loginFormSent!:ILogin;
   ngOnInit(): void {
     if(this._authService.isUserLoggedIn()){
-      this._router.navigate(['']);
+     this._router.navigate(['']);
     }
     this._authService.Fetch().subscribe((data)=>{
       console.log(data);
@@ -38,14 +38,20 @@ export class LoginComponent implements OnInit {
     };
     console.log(this.loginFormSent);
     this._authService.Login(this.loginFormSent).subscribe((data)=>{
-      console.log(data);
+      if(data.isSuccess==false){
+        alert("Email or password is wrong");
+        return;
+      }
       localStorage.setItem('jwtToken',data.token);
-         this.location.back();
+         //this.location.back();
          window.location.reload();
     })
   }
   LogOut(){
     this._authService.LogOut();
+  }
+  NavigateToRegister(){
+    this._router.navigate(['register']);
   }
 
 }
