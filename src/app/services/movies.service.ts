@@ -39,16 +39,16 @@ export class MoviesService {
   UpdateMovie(id:number, movie:IMovieCommand):Observable<ICreateResponse<number>>{
     return this.http.put<ICreateResponse<number>>(`https://localhost:7181/api/Movie/${id}`, movie);
   }
-  DeleteMovie(id:number):Observable<string>{
-    return this.http.delete<string>(`https://localhost:7181/api/Movie/${id}`);
+  DeleteMovie(id:number):Observable<ICreateResponse<IMovie>>{
+    return this.http.delete<ICreateResponse<IMovie>>(`https://localhost:7181/api/Movie/${id}`);
   }
-  AddActorToMovie(movieID:number, actorID:number):Observable<any>{
-    return this.http.put<any>(`https://localhost:7181/api/Movie/AddActorToMovie?movieID=${movieID}&actorID=${actorID}`,null);
+  AddActorToMovie(movieID:number, actorID:number):Observable<ICreateResponse<IMovie>>{
+    return this.http.put<ICreateResponse<IMovie>>(`https://localhost:7181/api/Movie/AddActorToMovie?movieID=${movieID}&actorID=${actorID}`,null);
   }
   GetMovieActorsByMovieID(movieID:number):Observable<IActor[]>{
     return this.http.get<IActor[]>(`https://localhost:7181/api/Movie/GetMovieActors/${movieID}`);
   }
-  DeleteMovieActor(movieID:number, actorID:number):Observable<any>{
-    return this.http.delete<any>(`https://localhost:7181/api/Movie/DeleteMovieActor?movieID=${movieID}&actorID=${actorID}`);
+  DeleteMovieActor(movieID:number, actorID:number):Observable<ICreateResponse<IMovie>>{
+    return this.http.delete<ICreateResponse<IMovie>>(`https://localhost:7181/api/Movie/DeleteMovieActor?movieID=${movieID}&actorID=${actorID}`);
   }
 }
