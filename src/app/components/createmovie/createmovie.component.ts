@@ -7,21 +7,30 @@ import { IMovieCommand } from '../../IMovieCommand';
 import { IMovie } from '../../IMovie';
 import { ICreateResponse } from '../../ICreateResponse';
 import { Route, Router } from '@angular/router';
-
+import { CustomErrorHandler } from '../../CustomErrorHandler';
+import { catchError, throwError } from 'rxjs';
+import { Toast, ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-createmovie',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ToastModule, MessagesModule, FormsModule, NgIf],
+  providers:[MessageService],
   templateUrl: './createmovie.component.html',
   styleUrl: './createmovie.component.css'
 })
 export class CreatemovieComponent implements OnInit {
+  selectedGenre!:string;
   createMovieForm!: FormGroup;
   selectedFile!: File;
   imagePath!: string;
   postedMovie!: IMovieCommand;
   returnedDataFromDB!:ICreateResponse<IMovie>;
-  constructor(private _imageService: ImagesService, private _movieService: MoviesService, private _router:Router) {
+  constructor(private _imageService: ImagesService, private _movieService: MoviesService, private _router:Router,
+    private messageService:MessageService) {
 
   }
   ngOnInit(): void {
@@ -46,7 +55,13 @@ export class CreatemovieComponent implements OnInit {
     if (this.createMovieForm.valid == true) {
       const sentImage = new FormData();
       sentImage.append('formFile', this.selectedFile, this.selectedFile.name);
-      this._imageService.UploadImage(sentImage).subscribe((data) => {
+      this._imageService.UploadImage(sentImage).pipe(
+        catchError(error => {
+          console.error('Error uploading image and posting movie:', error);
+          this._router.navigate(['error',error.error.message]);
+          return throwError(() => new Error('An error occurred while creating the movie.'));
+        })
+      ).subscribe((data) => {
         this.imagePath = data;
         this.postedMovie = {
           title: this.createMovieForm.value.title,
@@ -63,7 +78,14 @@ export class CreatemovieComponent implements OnInit {
             subGenres: "N/A"
           }
         };
-        this._movieService.PostMovie(this.postedMovie).subscribe((data)=>{
+        this._movieService.PostMovie(this.postedMovie).pipe(
+          catchError(error => {
+            console.error('Error creating movie:', error);
+            alert(`Error creating movie: ${error.error.message}`);
+            this.showError();
+            return throwError(() => new Error('An error occurred while creating the movie.')); 
+          })
+        ).subscribe((data)=>{
           this.returnedDataFromDB=data;
           console.log(this.returnedDataFromDB);
           if(this.returnedDataFromDB.isSuccess){
@@ -82,4 +104,25 @@ export class CreatemovieComponent implements OnInit {
   CancelForm(){
     this._router.navigate(['/movies']);
   }
+  showError() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Unauthorized' });
+}
+get title(){
+  return this.createMovieForm.get('title');
+}
+get releaseDate(){
+  return this.createMovieForm.get('releaseDate');
+}
+get description(){
+  return this.createMovieForm.get('description');
+}
+get length(){
+  return this.createMovieForm.get('length');
+}
+get genre(){
+  return this.createMovieForm.get('genre');
+}
+get language(){
+  return this.createMovieForm.get('language');
+}
 }

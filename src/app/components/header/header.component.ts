@@ -14,7 +14,10 @@ import { interval, map } from 'rxjs';
 export class HeaderComponent implements OnInit {
   user!:string;
   decodedToken!:any;
+  storageEventListener:any;
   ngOnInit(): void {
+
+    this.storageEventListener = window.addEventListener('storage', this.handleStorageChange.bind(this));
    interval(60000).pipe(map(() =>{
       if(this._authService.isTokenExpired()){
         localStorage.removeItem("jwtToken");
@@ -28,6 +31,10 @@ export class HeaderComponent implements OnInit {
     }
     else{
       this.user="Login"
+    }
+    if(this._authService.isTokenExpired()){
+      localStorage.removeItem("jwtToken");
+      this.user="login";
     }
 
 
@@ -48,6 +55,12 @@ export class HeaderComponent implements OnInit {
       this._router.navigate(['login']);
     }
 
+  }
+  handleStorageChange(event: StorageEvent) {
+    if (event.key === 'jwtToken') {
+      localStorage.removeItem('jwtToken');
+      window.location.reload();
+    }
   }
 
 }

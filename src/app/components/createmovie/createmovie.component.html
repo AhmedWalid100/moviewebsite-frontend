@@ -1,13 +1,25 @@
 
 <div class="creation-background">
     <form class="form-container" [formGroup]="createMovieForm" (ngSubmit)="CreateMovie()">
-        <div> <label>Title:</label><input type="text" formControlName="title"/></div>
-        <div> <label>Release Date:</label><input type="number" formControlName="releaseDate"/></div>
-        <div> <label>Length:</label><input type="number" formControlName="length"/></div>
-        <div> <label>Genre:</label><input type="text" formControlName="genre"/></div>
-        <div> <label>Language:</label><input type="text" formControlName="language" /></div>
-        <div> <label>Description:</label><textarea formControlName="description"></textarea></div>
+        <div> <label>Title:</label><input type="text" formControlName="title"/>
+        <span *ngIf="title && title.invalid && title.touched" style="color:red;">This field is required</span></div>
+        <div> <label>Release Date:</label><input type="number" formControlName="releaseDate"/>
+        <span *ngIf="releaseDate && releaseDate.invalid && releaseDate.touched" style="color:red;">This field is required</span></div>
+        <div> <label>Length:</label><input type="number" formControlName="length"/>
+        <span *ngIf="length && length.invalid && length.touched" style="color:red;">This field is required</span></div>
+        <div> <label>Genre:</label><select formControlName="genre">
+            <option value="Drama">Drama</option>
+            <option value="Comedy">Comedy</option>
+          </select>
+        <span *ngIf="genre && genre.invalid && genre.touched" style="color:red;">This field is required</span></div>
+        <div> <label>Language:</label><select formControlName="language">
+            <option value="English">English</option>
+            <option value="Arabic">Arabic</option>
+          </select>
+          <span *ngIf="language && language.invalid && language.touched" style="color:red;">This field is required</span></div>
+        <div> <label>Description:</label><textarea formControlName="description"></textarea>
+          <span *ngIf="description && description.invalid && description.touched" style="color:red;">This field is required</span></div>
         <div class="file"><label>Image:</label><input class="file" type="file" (change)="OnImageChange($event)"/></div>
-        <div class="button"> <button type="submit">Create Movie</button><button (click)="CancelForm()" type="button">Cancel</button></div>
+        <div class="button"> <button [disabled]="createMovieForm.invalid" type="submit">Create Movie</button><button (click)="CancelForm()" type="button">Cancel</button></div>
     </form>
 </div>

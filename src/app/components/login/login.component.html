@@ -3,6 +3,7 @@
         <h2>LOGIN</h2>
         <div class="input-container"><label>Email:</label><input type="email" formControlName="Email" /></div>
         <div class="input-container"><label>Password:</label><input type="password" formControlName="Password" /></div>
+        <p style="color:red; margin: -20px;" *ngIf="wrongCred==true">Email or password is wrong!</p>
         <button type="submit">Login</button>
         <p>No account? <span (click)="NavigateToRegister()" >Register</span></p>
     </form>

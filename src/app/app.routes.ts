@@ -15,6 +15,7 @@ import { EditactorComponent } from './components/editactor/editactor.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './auth.guard';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 
 
 
@@ -28,4 +29,5 @@ export const routes: Routes = [{path:"",component:HomepageComponent},
 {path:"actors/:id",component:ActordetailsComponent},
 {path:"edit/actor/:id",component:EditactorComponent,canActivate:[authGuard]},
 {path:"register",component:RegisterComponent},
-{path:"login",component:LoginComponent}];
+{path:"login",component:LoginComponent},
+{path:"error/:message",component:ErrorpageComponent}];

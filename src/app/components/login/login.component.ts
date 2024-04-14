@@ -5,11 +5,12 @@ import { AuthService } from '../../services/auth.service';
 import { ILogin } from '../../ILogin';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private _authService:AuthService, private location:Location, private _router:Router){
 
   }
+  wrongCred:boolean=false;
   loginForm!:FormGroup;
   loginFormSent!:ILogin;
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginFormSent);
     this._authService.Login(this.loginFormSent).subscribe((data)=>{
       if(data.isSuccess==false){
-        alert("Email or password is wrong");
+        this.wrongCred=true;
         return;
       }
       localStorage.setItem('jwtToken',data.token);
