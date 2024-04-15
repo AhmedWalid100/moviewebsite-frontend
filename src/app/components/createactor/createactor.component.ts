@@ -9,10 +9,11 @@ import { ActorsServiceService } from '../../services/actors-service.service';
 import { ICreateResponse } from '../../ICreateResponse';
 import { IActor } from '../../IActor';
 import { Router } from '@angular/router';
+import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-createactor',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, CommonModule],
+  imports: [ReactiveFormsModule, InputTextModule, CommonModule, NgIf],
   templateUrl: './createactor.component.html',
   styleUrl: './createactor.component.css'
 })
@@ -29,7 +30,6 @@ export class CreateactorComponent implements OnInit {
   ngOnInit(): void {
     this.createActorForm=new FormGroup({
       "name": new FormControl(null, Validators.required),
-      "age": new FormControl(null, Validators.required),
       "bio": new FormControl(null, Validators.required)
     })
   }
@@ -67,6 +67,12 @@ export class CreateactorComponent implements OnInit {
   }
   CancelForm(){
     this._router.navigate(["actors"]);
+  }
+  get name(){
+    return this.createActorForm.get('name');
+  }
+  get bio(){
+    return this.createActorForm.get('bio');
   }
   
 }

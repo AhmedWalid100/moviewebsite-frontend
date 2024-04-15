@@ -1,13 +1,13 @@
 
 <div class="creation-background">
     <form class="form-container" [formGroup]="updateMovieForm" (ngSubmit)="UpdateMovieImageCheck()">
-        <div> <label>Title:</label><input type="text" formControlName="title"/></div>
-        <div> <label>Release Date:</label><input type="number" formControlName="releaseDate"/></div>
-        <div> <label>Length:</label><input type="number" formControlName="length"/></div>
-        <div> <label>Genre:</label><input type="text" formControlName="genre"/></div>
-        <div> <label>Language:</label><input type="text" formControlName="language" /></div>
-        <div> <label>Description:</label><textarea formControlName="description"></textarea></div>
+        <div> <label>Title:</label><input type="text" formControlName="title"/><p *ngIf="title && title.invalid && title.touched" style="color:red;">This field is required</p></div>
+        <div> <label>Release Date:</label><input type="number" formControlName="releaseDate"/><p *ngIf="releaseDate && releaseDate.invalid && releaseDate.touched" style="color:red;">This field is required</p></div>
+        <div> <label>Length:</label><input type="number" formControlName="length"/><p *ngIf="length && length.invalid && length.touched" style="color:red;">This field is required</p></div>
+        <div> <label>Genre:</label><input type="text" formControlName="genre"/><p *ngIf="genre && genre.invalid && genre.touched" style="color:red;">This field is required</p></div>
+        <div> <label>Language:</label><input type="text" formControlName="language" /><p *ngIf="language && language.invalid && language.touched" style="color:red;">This field is required</p></div>
+        <div> <label>Description:</label><textarea formControlName="description"></textarea><p *ngIf="description && description.invalid && description.touched" style="color:red;">This field is required</p></div>
         <div class="file"><label>Image:</label><input class="file" type="file" (change)="OnImageChange($event)"/></div>
-        <div class="button"> <button type="submit">Edit Movie</button><button (click)="CancelForm()" type="button">Cancel</button></div>
+        <div class="button"> <button [disabled]="updateMovieForm.invalid" type="submit">Edit Movie</button><button (click)="CancelForm()" type="button">Cancel</button></div>
     </form>
 </div>

@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       Password:new FormControl(null, Validators.required)
     });
   }
+  
   Login(){
     this.loginFormSent={
       Email:this.loginForm.value.Email,
@@ -54,6 +55,12 @@ export class LoginComponent implements OnInit {
   }
   NavigateToRegister(){
     this._router.navigate(['register']);
+  }
+  get Email(){
+    return this.loginForm.get('Email');
+  }
+  get Password(){
+    return this.loginForm.get('Password');
   }
 
 }

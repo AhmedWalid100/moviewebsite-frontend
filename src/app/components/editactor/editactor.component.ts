@@ -38,7 +38,6 @@ constructor(private _imageService:ImagesService, private _actorService:ActorsSer
     this._actorService.GetActorByID(this.id).subscribe((data)=>{
       this.actor=data;
       this.editActorForm=new FormGroup({"name": new FormControl(this.actor.name, Validators.required),
-      "age": new FormControl(this.actor.age, Validators.required),
       "bio": new FormControl(this.actor.bio, Validators.required)});
       this.actorPoster=this.actor.posterURL;
     })
@@ -63,7 +62,6 @@ constructor(private _imageService:ImagesService, private _actorService:ActorsSer
   PostNewActor(){
     this.newActor={
       name:this.editActorForm.value.name,
-      age:this.editActorForm.value.age,
       bio:this.editActorForm.value.bio,
       posterURL:this.actorPoster
     }
@@ -73,5 +71,11 @@ constructor(private _imageService:ImagesService, private _actorService:ActorsSer
   }
   CancelForm(){
     this._router.navigate(["actors",this.id]);
+  }
+  get name(){
+    return this.editActorForm.get('name');
+  }
+  get bio(){
+    return this.editActorForm.get('bio');
   }
 }

@@ -8,10 +8,12 @@ import { IMovieCommand } from '../../IMovieCommand';
 import { IMovie } from '../../IMovie';
 import { ICreateResponse } from '../../ICreateResponse';
 import { Route, Router } from '@angular/router';
+import { NgIf } from '@angular/common';
+
 @Component({
   selector: 'app-editmovie',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './editmovie.component.html',
   styleUrl: './editmovie.component.css'
 })
@@ -89,5 +91,23 @@ export class EditmovieComponent implements OnInit{
   }
   CancelForm(){
     this._router.navigate(['/movies',this.id]);
+  }
+  get title(){
+    return this.updateMovieForm.get('title');
+  }
+  get releaseDate(){
+    return this.updateMovieForm.get('releaseDate');
+  }
+  get description(){
+    return this.updateMovieForm.get('description');
+  }
+  get length(){
+    return this.updateMovieForm.get('length');
+  }
+  get genre(){
+    return this.updateMovieForm.get('genre');
+  }
+  get language(){
+    return this.updateMovieForm.get('language');
   }
 }

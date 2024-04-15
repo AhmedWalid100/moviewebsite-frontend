@@ -1,10 +1,9 @@
 
 <div class="creation-background">
     <form class="form-container" [formGroup]="editActorForm" (ngSubmit)="EditActorImageCheck()" >
-        <div> <label>Name:</label><input type="text" formControlName="name"/></div>
-        <div> <label>Age:</label><input type="number" formControlName="age" /></div>
-        <div> <label>Bio:</label><textarea formControlName="bio"></textarea></div>
+        <div> <label>Name:</label><input type="text" formControlName="name"/><span *ngIf="name &&name.invalid &&name.touched" style="color:red;">Name field not valid.</span></div>
+        <div> <label>Bio:</label><textarea formControlName="bio"></textarea><span *ngIf="bio &&bio.invalid &&bio.touched" style="color:red;">Bio field not valid.</span></div>
         <div class="file"> <label>Image:</label><input class="file" type="file" (change)="OnImageChange($event)"/></div>
-        <div class="button"> <button type="submit">Edit Actor</button><button (click)="CancelForm()" type="button">Cancel</button></div>
+        <div class="button"> <button [disabled]="editActorForm.invalid" type="submit">Edit Actor</button><button (click)="CancelForm()" type="button">Cancel</button></div>
     </form>
 </div>
